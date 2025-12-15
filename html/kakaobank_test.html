@@ -14,7 +14,13 @@
 	<link rel="stylesheet" href="../css/otp_poc-kakao.css" />
 <style>
 
-.service_wrap {display:inline-block; position:relative; min-width:340px; width:340px; height:500px; border-radius:30px; background-color:#fff; box-shadow:0 1px 20px rgba(0,0,0,0.06); overflow:hidden;}
+.service_list {display:flex; flex-direction:column; justify-content:center; align-items:center; gap:80px; padding:50px 0;}
+.service_item {display:inline-block; position:relative; min-width:340px; width:340px; height:540px; border-radius:30px; background-color:#fff; box-shadow:0 1px 20px rgba(0,0,0,0.06); overflow:hidden;}
+.service_item .layer {}
+.service_item .layer div.dim {position:absolute; top:0; right:0; bottom:0; left:0; background-color:rgba(0,0,0,0.7);}
+.service_item .layer div.layer_inner {position:absolute; z-index:10;}
+.service_item .layer.toast div.layer_inner {bottom:20px; left:0; right:0; margin:0 auto;}
+.service_item .layer.alert div.layer_inner {top:50%; left:50%; transform:translate(-50%,-50%);}
 
 body {padding:50px; background-color:var(--color_main); color:#1e1e1e; text-align:center;}
 .section {position:absolute; top:0; right:0; bottom:0; left:0; background-color:#fff;
@@ -36,469 +42,497 @@ body {padding:50px; background-color:var(--color_main); color:#1e1e1e; text-alig
 		<p class="txt">PC/Mobile Web 에서 OTP 인증을 요청하는 상황을 가정합니다.</p>
 	</div>
 
-	<div class="service_wrap">
-		<div class="section" id="test001">
-			<div class="divide_wrap">
-				<div class="divide_top">
-					<div class="section_tit">
-						<h2>금융 서비스</h2>
-						<p class="txt">은행, 증권 등 금융 시스템 로그인</p>
-					</div>
-				</div>
-				<!-- // divide_top -->
-				<div class="divide_mid">
-					<div class="ipt_wrap">
-						<div class="ipt_set">
-							<label>
-								<input type="text" placeholder="placeholder" />
-							</label>
-						</div>
-						<button type="button" class="btn_fill"><span class="txt">BtnText</span></button>
-						<button type="button" class="btn_fill" disabled><span class="txt">BtnText</span></button>
-					</div>
-				</div>
-				<!-- // divide_mid -->
+	<div class="service_list">
 
-				<div class="divide_btm">
-					<p class="txt">본인 명의에 휴대폰이 없으신가요?</p>
-					<button type="button" class="btn_text"><span class="txt">다른 방식으로 본인인증 하기</span></button>
-				</div>
-				<!-- // divide_btm -->
-			</div>
-			<!-- // divide_wrap -->
-		</div>
-		<!-- // section -->
-
-		<div class="section" id="test002">
-			<div class="divide_wrap">
-				<div class="divide_top">
-					<div class="section_tit">
-						<h2>금융 서비스</h2>
-						<p class="txt">은행, 증권 등 금융 시스템 로그인</p>
-					</div>
-				</div>
-				<!-- // divide_top -->
-				<div class="divide_mid">
-					<div class="ipt_wrap">
-						<div class="ipt_set">
-							<label>
-								<input type="text" placeholder="사번을 입력하세요" />
-							</label>
-						</div>
-						<button type="button" class="btn_fill"><span class="txt">PUSH 인증 요청</span></button>
-					</div>
-					<!-- // ipt_wrap -->
-				</div>
-				<!-- // divide_mid -->
-
-				<div class="divide_btm">
-					<p class="txt">본인 명의에 휴대폰이 없으신가요?</p>
-					<button type="button" class="btn_text"><span class="txt">다른 방식으로 본인인증 하기</span></button>
-				</div>
-				<!-- // divide_btm -->
-			</div>
-			<!-- // divide_wrap -->
-		</div>
-		<!-- // section -->
-
-		<div class="section" id="test003" style="display:none;">
-			<div class="divide_wrap">
-				<div class="divide_top">
-					<div class="section_tit">
-						<p class="txt">임시 OTP 발급 요청을 위해 정보를 입력해주세요</p>
-					</div>
-				</div>
-				<!-- // divide_top -->
-				<div class="divide_mid">
-					<div class="ipt_wrap">
-						<div class="ipt_set">
-							<label>
-								<input type="text" placeholder="이름을 입력해주세요." />
-							</label>
-						</div>
-						<div class="ipt_set">
-							<label>
-								<input type="text" placeholder="사번 또는 휴대폰 번호를 입력하세요." />
-							</label>
+		<div class="service_item">
+			<div class="section" id="test000" style="display:none;">
+				<div class="divide_wrap">
+					<div class="divide_top">
+						<div class="section_tit">
+							<h2>금융 서비스</h2>
+							<p class="txt">은행, 증권 등 금융 시스템 로그인</p>
 						</div>
 					</div>
-					<!-- // ipt_wrap -->
-				</div>
-				<!-- // divide_mid -->
-
-				<div class="divide_btm">
-					<button type="button" class="btn_fill"><span class="txt">임시 OTP 발급 요청</span></button>
-					<button type="button" class="btn_text"><span class="txt">PUSH로 본인인증 하기</span></button>
-				</div>
-				<!-- // divide_btm -->
-			</div>
-			<!-- // divide_wrap -->
-		</div>
-		<!-- // section -->
-
-
-		<div class="section" id="test004" style="display:none;">
-			<div class="btn_back">
-				<svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24" height="24"><path d="M19,11H9l3.29-3.29a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0l-4.29,4.3A2,2,0,0,0,6,12H6a2,2,0,0,0,.59,1.4l4.29,4.3a1,1,0,1,0,1.41-1.42L9,13H19a1,1,0,0,0,0-2Z"/></svg>
-			</div>
-
-			<div class="divide_wrap">
-				<div class="divide_top">
-					<div class="section_tit">
-						<span class="ico">
-							<svg id="Layer_1" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path fill="#4d4b49" d="m16.551 12a12.556 12.556 0 0 0 4.406-7.449 3.943 3.943 0 0 0 -.918-3.151 4.017 4.017 0 0 0 -3.039-1.4h-9.995a4.014 4.014 0 0 0 -3.044 1.4 3.94 3.94 0 0 0 -.917 3.158 12.522 12.522 0 0 0 4.401 7.442 12.522 12.522 0 0 0 -4.4 7.444 3.94 3.94 0 0 0 .916 3.156 4.014 4.014 0 0 0 3.044 1.4h9.995a4.017 4.017 0 0 0 3.044-1.4 3.944 3.944 0 0 0 .918-3.156 12.557 12.557 0 0 0 -4.411-7.444zm1.277 8.559a1 1 0 0 1 -.828.441h-10a1 1 0 0 1 -.928-1.374 14.856 14.856 0 0 1 4.6-5.656l.7-.559a1 1 0 0 1 1.245 0l.69.551a15.013 15.013 0 0 1 4.61 5.662 1 1 0 0 1 -.089.935zm-2.479-1.559h-6.7a14.962 14.962 0 0 1 3.271-3.462l.08-.066.071.055a15.3 15.3 0 0 1 3.278 3.473z"/></svg>
-						</span>
-						<p class="tit">임시 OTP 발급 대기 중입니다.</p>
-					</div>
-				</div>
-				<!-- // divide_top -->
-				<div class="divide_mid">
-					<div class="user_state_wrap">
-						<div class="user_info">
-							<div class="user">
-								<span class="user_name">홍길동</span>
-								<span class="user_emp">(165457)</span>
+					<!-- // divide_top -->
+					<div class="divide_mid">
+						<div class="ipt_wrap">
+							<div class="ipt_set">
+								<label>
+									<input type="text" placeholder="placeholder" />
+								</label>
 							</div>
-							<span class="user_phone">010-4568-7894</span>
-						</div>
-						<div class="status">
-							<span class="pending">발급 대기중</span>
+							<button type="button" class="btn_fill"><span class="txt">BtnText</span></button>
+							<button type="button" class="btn_fill" disabled><span class="txt">BtnText</span></button>
 						</div>
 					</div>
-				</div>
-				<!-- // divide_mid -->
-				<div class="divide_btm">
-					<button type="button" class="btn_fill" disabled><span class="txt">OTP PIN 인증</span></button>
-					<button type="button" class="btn_text"><span class="txt">PUSH로 본인인증 하기</span></button>
-				</div>
-				<!-- // divide_btm -->
-			</div>
-			<!-- // divide_wrap -->
+					<!-- // divide_mid -->
 
-		</div>
-		<!-- // section -->
-
-		<div class="section" id="test005" style="display:none;">
-			<div class="btn_back">
-				<svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24" height="24"><path d="M19,11H9l3.29-3.29a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0l-4.29,4.3A2,2,0,0,0,6,12H6a2,2,0,0,0,.59,1.4l4.29,4.3a1,1,0,1,0,1.41-1.42L9,13H19a1,1,0,0,0,0-2Z"/></svg>
-			</div>
-
-			<div class="divide_wrap">
-				<div class="divide_top">
-					<div class="section_tit">
-						<span class="ico">
-							<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path fill="#e50911" d="M23.08,15.33L15,2.57c-.68-.98-1.81-1.57-3-1.57s-2.32,.58-3.03,1.6L.93,15.31c-1.02,1.46-1.21,3.21-.5,4.56,.7,1.35,2.17,2.12,4.01,2.12h15.12c1.85,0,3.31-.77,4.01-2.12,.7-1.35,.51-3.09-.49-4.54ZM11,7c0-.55,.45-1,1-1s1,.45,1,1v6c0,.55-.45,1-1,1s-1-.45-1-1V7Zm1,12c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5,1.5,.67,1.5,1.5-.67,1.5-1.5,1.5Z"/></svg>
-						</span>
-						<p class="tit">관리자에게 문의하세요</p>
+					<div class="divide_btm">
+						<p class="txt">본인 명의에 휴대폰이 없으신가요?</p>
+						<button type="button" class="btn_text"><span class="txt">다른 방식으로 본인인증 하기</span></button>
 					</div>
+					<!-- // divide_btm -->
 				</div>
-				<!-- // divide_top -->
-				<div class="divide_mid">
-					<div class="user_state_wrap">
-						<div class="user_info">
-							<div class="user">
-								<span class="user_name">홍길동</span>
-								<span class="user_emp">(165457)</span>
+				<!-- // divide_wrap -->
+			</div>
+			<!-- // section -->
+
+			<div class="section" id="test001">
+				<div class="divide_wrap">
+					<div class="divide_top">
+						<div class="section_tit">
+							<h2>금융 서비스</h2>
+							<p class="txt">은행, 증권 등 금융 시스템 로그인</p>
+						</div>
+					</div>
+					<!-- // divide_top -->
+					<div class="divide_mid">
+						<div class="ipt_wrap">
+							<div class="ipt_set">
+								<label>
+									<input type="text" placeholder="사번을 입력하세요" />
+								</label>
 							</div>
-							<span class="user_phone">010-4568-7894</span>
+							<button type="button" class="btn_fill" id="btn_test01"><span class="txt">PUSH 인증 요청</span></button>
 						</div>
-						<div class="status">
-							<span class="failed">발급 승인 실패</span>
+						<!-- // ipt_wrap -->
+					</div>
+					<!-- // divide_mid -->
+
+					<div class="divide_btm">
+						<p class="txt">본인 명의에 휴대폰이 없으신가요?</p>
+						<button type="button" class="btn_text"><span class="txt">다른 방식으로 본인인증 하기</span></button>
+					</div>
+					<!-- // divide_btm -->
+				</div>
+				<!-- // divide_wrap -->
+			</div>
+			<!-- // section -->
+
+			<div class="section" id="test002" style="display:none;">
+				<div class="divide_wrap">
+					<div class="divide_top">
+						<div class="section_tit">
+							<p class="txt">임시 OTP 발급 요청을 위해 정보를 입력해주세요</p>
 						</div>
 					</div>
-				</div>
-				<!-- // divide_mid -->
-				<div class="divide_btm">
-					<button type="button" class="btn_fill" disabled><span class="txt">OTP PIN 인증</span></button>
-					<button type="button" class="btn_text"><span class="txt">PUSH로 본인인증 하기</span></button>
-				</div>
-				<!-- // divide_btm -->
-			</div>
-			<!-- // divide_wrap -->
-		</div>
-		<!-- // section -->
-
-
-		<div class="section" id="test006" style="display:none;">
-			<div class="btn_back">
-				<svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24" height="24"><path d="M19,11H9l3.29-3.29a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0l-4.29,4.3A2,2,0,0,0,6,12H6a2,2,0,0,0,.59,1.4l4.29,4.3a1,1,0,1,0,1.41-1.42L9,13H19a1,1,0,0,0,0-2Z"/></svg>
-			</div>
-
-			<div class="divide_wrap">
-				<div class="divide_top">
-					<div class="section_tit">
-						<span class="ico">
-							<svg id="Layer_1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path fill="#2e89d9" d="m12 1c-7.71 0-11 3.29-11 11s3.29 11 11 11 11-3.29 11-11-3.29-11-11-11zm5.305 8.539c-1.312 2.053-3.18 4.626-6.001 6.319-.324.195-.731.19-1.05-.013-1.52-.963-2.661-1.995-3.594-3.248-.33-.443-.238-1.069.205-1.399.442-.33 1.069-.237 1.398.205.674.905 1.488 1.679 2.536 2.405 2.16-1.46 3.644-3.507 4.819-5.346.299-.466.917-.602 1.381-.304.466.298.602.916.305 1.381z"/></svg>
-						</span>
-						<p class="tit">발급 승인이 완료되었습니다.</p>
-					</div>
-				</div>
-				<!-- // divide_top -->
-				<div class="divide_mid">
-					<div class="user_state_wrap">
-						<div class="user_info">
-							<div class="user">
-								<span class="user_name">홍길동</span>
-								<span class="user_emp">(165457)</span>
+					<!-- // divide_top -->
+					<div class="divide_mid">
+						<div class="ipt_wrap">
+							<div class="ipt_set">
+								<label>
+									<input type="text" placeholder="이름을 입력해주세요." />
+								</label>
 							</div>
-							<span class="user_phone">010-4568-7894</span>
+							<div class="ipt_set">
+								<label>
+									<input type="text" placeholder="사번 또는 휴대폰 번호를 입력하세요." />
+								</label>
+							</div>
 						</div>
-						<div class="status">
-							<span class="completed">발급 승인 완료</span>
+						<!-- // ipt_wrap -->
+					</div>
+					<!-- // divide_mid -->
+
+					<div class="divide_btm">
+						<button type="button" class="btn_fill" id="btn_test02"><span class="txt">임시 OTP 발급 요청</span></button>
+						<button type="button" class="btn_text"><span class="txt">PUSH로 본인인증 하기</span></button>
+					</div>
+					<!-- // divide_btm -->
+				</div>
+				<!-- // divide_wrap -->
+			</div>
+			<!-- // section -->
+
+
+			<div class="section" id="test003" style="display:none;">
+				<div class="btn_back">
+					<svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24" height="24"><path d="M19,11H9l3.29-3.29a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0l-4.29,4.3A2,2,0,0,0,6,12H6a2,2,0,0,0,.59,1.4l4.29,4.3a1,1,0,1,0,1.41-1.42L9,13H19a1,1,0,0,0,0-2Z"/></svg>
+				</div>
+
+				<div class="divide_wrap">
+					<div class="divide_top">
+						<div class="section_tit">
+							<span class="ico">
+								<svg id="Layer_1" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path fill="#4d4b49" d="m16.551 12a12.556 12.556 0 0 0 4.406-7.449 3.943 3.943 0 0 0 -.918-3.151 4.017 4.017 0 0 0 -3.039-1.4h-9.995a4.014 4.014 0 0 0 -3.044 1.4 3.94 3.94 0 0 0 -.917 3.158 12.522 12.522 0 0 0 4.401 7.442 12.522 12.522 0 0 0 -4.4 7.444 3.94 3.94 0 0 0 .916 3.156 4.014 4.014 0 0 0 3.044 1.4h9.995a4.017 4.017 0 0 0 3.044-1.4 3.944 3.944 0 0 0 .918-3.156 12.557 12.557 0 0 0 -4.411-7.444zm1.277 8.559a1 1 0 0 1 -.828.441h-10a1 1 0 0 1 -.928-1.374 14.856 14.856 0 0 1 4.6-5.656l.7-.559a1 1 0 0 1 1.245 0l.69.551a15.013 15.013 0 0 1 4.61 5.662 1 1 0 0 1 -.089.935zm-2.479-1.559h-6.7a14.962 14.962 0 0 1 3.271-3.462l.08-.066.071.055a15.3 15.3 0 0 1 3.278 3.473z"/></svg>
+							</span>
+							<p class="tit">임시 OTP 발급 대기 중입니다.</p>
 						</div>
 					</div>
+					<!-- // divide_top -->
+					<div class="divide_mid">
+						<div class="user_state_wrap">
+							<div class="user_info">
+								<div class="user">
+									<span class="user_name">홍길동</span>
+									<span class="user_emp">(165457)</span>
+								</div>
+								<span class="user_phone">010-4568-7894</span>
+							</div>
+							<div class="status">
+								<span class="pending">인증 승인 대기</span>
+							</div>
+						</div>
+					</div>
+					<!-- // divide_mid -->
+					<div class="divide_btm">
+						<button type="button" class="btn_fill" disabled><span class="txt">OTP PIN 인증</span></button>
+						<button type="button" class="btn_text"><span class="txt">PUSH 인증 요청</span></button>
+					</div>
+					<!-- // divide_btm -->
 				</div>
-				<!-- // divide_mid -->
-				<div class="divide_btm">
-					<button type="button" class="btn_fill"><span class="txt">OTP PIN 인증</span></button>
-					<button type="button" class="btn_text"><span class="txt">PUSH로 본인인증 하기</span></button>
-				</div>
-				<!-- // divide_btm -->
+				<!-- // divide_wrap -->
+
 			</div>
-			<!-- // divide_wrap -->
+			<!-- // section -->
+
+			<div class="section" id="test004" style="display:none;">
+				<div class="btn_back">
+					<svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24" height="24"><path d="M19,11H9l3.29-3.29a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0l-4.29,4.3A2,2,0,0,0,6,12H6a2,2,0,0,0,.59,1.4l4.29,4.3a1,1,0,1,0,1.41-1.42L9,13H19a1,1,0,0,0,0-2Z"/></svg>
+				</div>
+
+				<div class="divide_wrap">
+					<div class="divide_top">
+						<div class="section_tit">
+							<span class="ico">
+								<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path fill="#e50911" d="M23.08,15.33L15,2.57c-.68-.98-1.81-1.57-3-1.57s-2.32,.58-3.03,1.6L.93,15.31c-1.02,1.46-1.21,3.21-.5,4.56,.7,1.35,2.17,2.12,4.01,2.12h15.12c1.85,0,3.31-.77,4.01-2.12,.7-1.35,.51-3.09-.49-4.54ZM11,7c0-.55,.45-1,1-1s1,.45,1,1v6c0,.55-.45,1-1,1s-1-.45-1-1V7Zm1,12c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5,1.5,.67,1.5,1.5-.67,1.5-1.5,1.5Z"/></svg>
+							</span>
+							<p class="tit">담당자에게 문의하세요</p>
+						</div>
+					</div>
+					<!-- // divide_top -->
+					<div class="divide_mid">
+						<div class="user_state_wrap">
+							<div class="user_info">
+								<div class="user">
+									<span class="user_name">홍길동</span>
+									<span class="user_emp">(165457)</span>
+								</div>
+								<span class="user_phone">010-4568-7894</span>
+							</div>
+							<div class="status">
+								<span class="failed">인증 승인 실패</span>
+							</div>
+						</div>
+					</div>
+					<!-- // divide_mid -->
+					<div class="divide_btm">
+						<button type="button" class="btn_fill" disabled><span class="txt">OTP PIN 인증</span></button>
+						<button type="button" class="btn_text"><span class="txt">PUSH 인증 요청</span></button>
+					</div>
+					<!-- // divide_btm -->
+				</div>
+				<!-- // divide_wrap -->
+			</div>
+			<!-- // section -->
+
+
+			<div class="section" id="test005" style="display:none;">
+				<div class="btn_back">
+					<svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24" height="24"><path d="M19,11H9l3.29-3.29a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0l-4.29,4.3A2,2,0,0,0,6,12H6a2,2,0,0,0,.59,1.4l4.29,4.3a1,1,0,1,0,1.41-1.42L9,13H19a1,1,0,0,0,0-2Z"/></svg>
+				</div>
+
+				<div class="divide_wrap">
+					<div class="divide_top">
+						<div class="section_tit">
+							<span class="ico">
+								<svg id="Layer_1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path fill="#2e89d9" d="m12 1c-7.71 0-11 3.29-11 11s3.29 11 11 11 11-3.29 11-11-3.29-11-11-11zm5.305 8.539c-1.312 2.053-3.18 4.626-6.001 6.319-.324.195-.731.19-1.05-.013-1.52-.963-2.661-1.995-3.594-3.248-.33-.443-.238-1.069.205-1.399.442-.33 1.069-.237 1.398.205.674.905 1.488 1.679 2.536 2.405 2.16-1.46 3.644-3.507 4.819-5.346.299-.466.917-.602 1.381-.304.466.298.602.916.305 1.381z"/></svg>
+							</span>
+							<p class="tit">발급 승인이 완료되었습니다.</p>
+						</div>
+					</div>
+					<!-- // divide_top -->
+					<div class="divide_mid">
+						<div class="user_state_wrap">
+							<div class="user_info">
+								<div class="user">
+									<span class="user_name">홍길동</span>
+									<span class="user_emp">(165457)</span>
+								</div>
+								<span class="user_phone">010-4568-7894</span>
+							</div>
+							<div class="status">
+								<span class="completed">인증 승인 완료</span>
+							</div>
+						</div>
+					</div>
+					<!-- // divide_mid -->
+					<div class="divide_btm">
+						<button type="button" class="btn_fill" id="btn_test03"><span class="txt">OTP PIN 인증</span></button>
+						<button type="button" class="btn_text"><span class="txt">PUSH 인증 요청</span></button>
+					</div>
+					<!-- // divide_btm -->
+				</div>
+				<!-- // divide_wrap -->
+			</div>
+			<!-- // section -->
+
+
+			<div class="section" id="test006" style="display:none;">
+				<div class="btn_back">
+					<svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24" height="24"><path d="M19,11H9l3.29-3.29a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0l-4.29,4.3A2,2,0,0,0,6,12H6a2,2,0,0,0,.59,1.4l4.29,4.3a1,1,0,1,0,1.41-1.42L9,13H19a1,1,0,0,0,0-2Z"/></svg>
+				</div>
+
+				<div class="divide_wrap">
+					<div class="divide_top">
+						<div class="section_tit">
+							<h2>PIN 번호 인증</h2>
+							<p class="txt">임시 OTP 발급을 위해 설정한 PIN을 입력하세요.</p>
+						</div>
+					</div>
+					<!-- // divide_top -->
+
+					<div class="divide_mid">
+						<div class="otp_num_wrap">
+							<div class="pin_dot_wrap">
+								<span class="pin_dot"></span>
+								<span class="pin_dot"></span>
+								<span class="pin_dot"></span>
+								<span class="pin_dot"></span>
+								<span class="pin_dot"></span>
+								<span class="pin_dot"></span>
+							</div>
+							<p class="pin_alert">5회 실패 시 OTP PIN 번호를 재설정 해야합니다.<br />
+								(1/5)</p>
+						</div>
+						<!-- // otp_num_wrap -->
+					</div>
+					<!-- // divide_mid -->
+
+					<div class="divide_btm">
+						<div class="keypad_wrap">
+							<div class="keypad_num_wrap">
+								<button type="button" class="btn_num"><span class="num">1</span></button>
+								<button type="button" class="btn_num"><span class="num">2</span></button>
+								<button type="button" class="btn_num"><span class="num">3</span></button>
+								<button type="button" class="btn_num"><span class="num">4</span></button>
+								<button type="button" class="btn_num"><span class="num">5</span></button>
+								<button type="button" class="btn_num"><span class="num">6</span></button>
+								<button type="button" class="btn_num"><span class="num">7</span></button>
+								<button type="button" class="btn_num"><span class="num">8</span></button>
+								<button type="button" class="btn_num"><span class="num">9</span></button>
+								<button type="button" class="btn_num"><span class="num">0</span></button>
+							</div>
+							<div class="keypad_tools">
+								<button type="button" class="btn_reset"><span class="txt">전체<br />삭제</span></button>
+								<button type="button" class="btn_del">
+									<span class="ico">
+										<svg id="Layer_1" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
+											<path d="m19.5,2h-10.5c-1.357,0-2.629.604-3.487,1.656L1.026,9.156c-1.345,1.648-1.345,4.041,0,5.688l4.486,5.5c.858,1.052,2.13,1.656,3.487,1.656h10.5c2.481,0,4.5-2.019,4.5-4.5V6.5c0-2.481-2.019-4.5-4.5-4.5Zm3.5,15.5c0,1.93-1.57,3.5-3.5,3.5h-10.5c-1.056,0-2.045-.469-2.712-1.288L1.802,14.212c-1.047-1.282-1.047-3.143,0-4.425l4.486-5.5c.667-.818,1.656-1.288,2.712-1.288h10.5c1.93,0,3.5,1.57,3.5,3.5v11Zm-5.146-8.646l-3.146,3.146,3.146,3.146c.195.195.195.512,0,.707-.098.098-.226.146-.354.146s-.256-.049-.354-.146l-3.146-3.146-3.146,3.146c-.098.098-.226.146-.354.146s-.256-.049-.354-.146c-.195-.195-.195-.512,0-.707l3.146-3.146-3.146-3.146c-.195-.195-.195-.512,0-.707s.512-.195.707,0l3.146,3.146,3.146-3.146c.195-.195.512-.195.707,0s.195.512,0,.707Z"/>
+										</svg>
+										<!-- <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" height="24" viewBox="0 0 24 24" width="24" data-name="Layer 1">
+											<path fill="#333" d="m19 2h-9.044a4.966 4.966 0 0 0 -3.946 1.931l-5.8 7.455a1 1 0 0 0 0 1.228l5.8 7.455a4.966 4.966 0 0 0 3.946 1.931h9.044a5.006 5.006 0 0 0 5-5v-10a5.006 5.006 0 0 0 -5-5zm-1.293 12.293a1 1 0 1 1 -1.414 1.414l-2.293-2.293-2.293 2.293a1 1 0 0 1 -1.414-1.414l2.293-2.293-2.293-2.293a1 1 0 0 1 1.414-1.414l2.293 2.293 2.293-2.293a1 1 0 0 1 1.414 1.414l-2.293 2.293z"/>
+										</svg> -->
+									</span>
+								</button>
+							</div>
+						</div>
+						<!-- // keypad_wrap -->
+					</div>
+					<!-- // divide_btm -->
+				</div>
+				<!-- // divide_wrap -->
+			</div>
+			<!-- // section -->
+
+
+
+
+			<div class="layer toast">
+				<div class="layer_inner">
+					<span class="ico">
+						<svg id="Layer_1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path fill="#2e89d9" d="m12 1c-7.71 0-11 3.29-11 11s3.29 11 11 11 11-3.29 11-11-3.29-11-11-11zm5.305 8.539c-1.312 2.053-3.18 4.626-6.001 6.319-.324.195-.731.19-1.05-.013-1.52-.963-2.661-1.995-3.594-3.248-.33-.443-.238-1.069.205-1.399.442-.33 1.069-.237 1.398.205.674.905 1.488 1.679 2.536 2.405 2.16-1.46 3.644-3.507 4.819-5.346.299-.466.917-.602 1.381-.304.466.298.602.916.305 1.381z"/></svg>
+					</span>
+					<p class="txt">인증이 완료되었습니다.</p>
+					<button type="button" class="btn_close"><span class="txt">닫기</span></button>
+				</div>
+			</div>
+
+			<div class="layer toast">
+				<div class="layer_inner">
+					<span class="ico">
+						<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="24" height="24"><path fill="#e50911" d="M23.08,15.33L15,2.57c-.68-.98-1.81-1.57-3-1.57s-2.32,.58-3.03,1.6L.93,15.31c-1.02,1.46-1.21,3.21-.5,4.56,.7,1.35,2.17,2.12,4.01,2.12h15.12c1.85,0,3.31-.77,4.01-2.12,.7-1.35,.51-3.09-.49-4.54ZM11,7c0-.55,.45-1,1-1s1,.45,1,1v6c0,.55-.45,1-1,1s-1-.45-1-1V7Zm1,12c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5,1.5,.67,1.5,1.5-.67,1.5-1.5,1.5Z"/></svg>
+						<!-- <svg id="Layer_1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path fill="#e50911" d="m12 1c-7.71 0-11 3.29-11 11s3.29 11 11 11 11-3.29 11-11-3.29-11-11-11zm5.305 8.539c-1.312 2.053-3.18 4.626-6.001 6.319-.324.195-.731.19-1.05-.013-1.52-.963-2.661-1.995-3.594-3.248-.33-.443-.238-1.069.205-1.399.442-.33 1.069-.237 1.398.205.674.905 1.488 1.679 2.536 2.405 2.16-1.46 3.644-3.507 4.819-5.346.299-.466.917-.602 1.381-.304.466.298.602.916.305 1.381z"/></svg> -->
+					</span>
+					<p class="txt">인증에 실패했습니다. 다시 시도해주세요.</p>
+					<button type="button" class="btn_close"><span class="txt">닫기</span></button>
+				</div>
+			</div>
+			<!-- // layer toast-->
+
+
+
+
+
+
+			<div class="layer alert">
+				<div class="dim"></div>
+				<div class="layer_inner">
+					<div class="layer_content">
+						<div class="layer_header">
+							<h2>PUSH 인증 요청</h2>
+						</div>
+						<div class="layer_body">
+							<span class="ico">
+								<!-- <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M15,24h-6c-2.757,0-5-2.243-5-5V5C4,2.243,6.243,0,9,0h6c2.757,0,5,2.243,5,5v14c0,2.757-2.243,5-5,5ZM9,2c-1.654,0-3,1.346-3,3v14c0,1.654,1.346,3,3,3h6c1.654,0,3-1.346,3-3V5c0-1.654-1.346-3-3-3h-6Zm5,17h0c0-.552-.448-1-1-1h-2c-.552,0-1,.448-1,1h0c0,.552,.448,1,1,1h2c.552,0,1-.448,1-1Z"/></svg> -->
+								<svg class="loading" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve" width="512" height="512">
+									<g>
+										<path d="M268.078,512C126.693,511.962,12.108,397.316,12.146,255.932S126.83-0.038,268.215,0   c96.559,0.026,184.888,54.38,228.428,140.565c7.695,15.91,1.035,35.046-14.875,42.74c-15.501,7.497-34.155,1.384-42.213-13.834   C391.771,74.81,276.296,36.808,181.634,84.592S48.97,247.851,96.754,342.513s163.259,132.664,257.921,84.88   c36.48-18.414,66.133-47.987,84.646-84.417c8.018-15.753,27.287-22.023,43.04-14.005c15.753,8.018,22.023,27.287,14.005,43.04l0,0   C452.852,458.077,364.519,512.244,268.078,512z"/>
+									</g>
+								</svg>
+
+							</span>
+							<div class="txt_wrap">
+								<p class="txt">앱으로 인증 요청 메세지를 보내고 있습니다.</p>
+							</div>
+						</div>
+					</div>
+					<!-- // layer_content -->
+					<button type="button" class="btn_close"><span class="txt">닫기</span></button>
+				</div>
+				<!-- // layer_inner -->
+			</div>
+			<!-- // layer alert-->
+
+
+			<div class="layer alert">
+				<div class="dim"></div>
+				<div class="layer_inner">
+					<div class="layer_content">
+						<div class="layer_header">
+							<h2>PUSH 인증 요청</h2>
+						</div>
+						<div class="layer_body">
+							<span class="ico">
+								<svg id="Layer_1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path fill="#2e89d9" d="m12 1c-7.71 0-11 3.29-11 11s3.29 11 11 11 11-3.29 11-11-3.29-11-11-11zm5.305 8.539c-1.312 2.053-3.18 4.626-6.001 6.319-.324.195-.731.19-1.05-.013-1.52-.963-2.661-1.995-3.594-3.248-.33-.443-.238-1.069.205-1.399.442-.33 1.069-.237 1.398.205.674.905 1.488 1.679 2.536 2.405 2.16-1.46 3.644-3.507 4.819-5.346.299-.466.917-.602 1.381-.304.466.298.602.916.305 1.381z"/></svg>
+							</span>
+							<div class="txt_wrap">
+								<strong class="tit">인증 요청 발송 완료</strong>
+								<p class="txt">휴대폰 앱에서 인증을 진행해주세요.</p>
+							</div>
+							
+						</div>
+						<div class="layer_footer">
+							<button type="button" class="btn_next"><span class="txt">확인</span></button>
+						</div>
+					</div>
+					<!-- // layer_content -->
+					<button type="button" class="btn_close"><span class="txt">닫기</span></button>
+				</div>
+				<!-- // layer_inner -->
+			</div>
+			<!-- // layer alert-->
+
+
+			<div class="layer alert">
+				<div class="dim"></div>
+				<div class="layer_inner">
+					<div class="layer_content">
+						<div class="layer_header">
+							<h2>PUSH 인증 요청</h2>
+						</div>
+						<div class="layer_body">
+							<span class="ico">
+								<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path fill="#e50911" d="M23.08,15.33L15,2.57c-.68-.98-1.81-1.57-3-1.57s-2.32,.58-3.03,1.6L.93,15.31c-1.02,1.46-1.21,3.21-.5,4.56,.7,1.35,2.17,2.12,4.01,2.12h15.12c1.85,0,3.31-.77,4.01-2.12,.7-1.35,.51-3.09-.49-4.54ZM11,7c0-.55,.45-1,1-1s1,.45,1,1v6c0,.55-.45,1-1,1s-1-.45-1-1V7Zm1,12c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5,1.5,.67,1.5,1.5-.67,1.5-1.5,1.5Z"/></svg>
+							</span>
+							<div class="txt_wrap">
+								<strong class="tit">인증 요청 발송 실패</strong>
+								<p class="txt">PUSH 인증을 다시 시도해주세요.</p>
+							</div>
+							
+						</div>
+						<div class="layer_footer">
+							<button type="button" class="btn_next"><span class="txt">확인</span></button>
+						</div>
+					</div>
+					<!-- // layer_content -->
+					<button type="button" class="btn_close"><span class="txt">닫기</span></button>
+				</div>
+				<!-- // layer_inner -->
+			</div>
+			<!-- // layer alert-->
+
+
+			<div class="layer alert">
+				<div class="dim"></div>
+				<div class="layer_inner">
+					<div class="layer_content">
+						<div class="layer_header">
+							<h2>PIN 번호 인증</h2>
+						</div>
+						<div class="layer_body">
+							<span class="ico">
+								<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path fill="#e50911" d="M23.08,15.33L15,2.57c-.68-.98-1.81-1.57-3-1.57s-2.32,.58-3.03,1.6L.93,15.31c-1.02,1.46-1.21,3.21-.5,4.56,.7,1.35,2.17,2.12,4.01,2.12h15.12c1.85,0,3.31-.77,4.01-2.12,.7-1.35,.51-3.09-.49-4.54ZM11,7c0-.55,.45-1,1-1s1,.45,1,1v6c0,.55-.45,1-1,1s-1-.45-1-1V7Zm1,12c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5,1.5,.67,1.5,1.5-.67,1.5-1.5,1.5Z"/></svg>
+							</span>
+							<div class="txt_wrap">
+								<strong class="tit">
+									비밀번호 5회 입력 실패로<br />
+									비밀번호 재설정이 필요합니다.
+								</strong>
+								<p class="txt">담당자에게 문의하세요.</p>
+							</div>
+						</div>
+					</div>
+					<!-- // layer_content -->
+					<button type="button" class="btn_close"><span class="txt">닫기</span></button>
+				</div>
+				<!-- // layer_inner -->
+			</div>
+			<!-- // layer alert-->
+
+
+
 		</div>
-		<!-- // section -->
+		<!-- // service_item -->
 
 
-		<div class="section" id="test007" style="display:none;">
-			<div class="btn_back">
-				<svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="24" height="24"><path d="M19,11H9l3.29-3.29a1,1,0,0,0,0-1.42,1,1,0,0,0-1.41,0l-4.29,4.3A2,2,0,0,0,6,12H6a2,2,0,0,0,.59,1.4l4.29,4.3a1,1,0,1,0,1.41-1.42L9,13H19a1,1,0,0,0,0-2Z"/></svg>
+		<div class="service_item">
+			<div class="section" id="">
+				<div class="divide_wrap">
+					<div class="divide_top">
+						<div class="section_tit">
+							<h2>경영 서비스</h2>
+							<p class="txt">내부 경영·업무 지원 시스템 로그인</p>
+						</div>
+					</div>
+					<!-- // divide_top -->
+					<div class="divide_mid">
+						<div class="ipt_wrap">
+							<div class="ipt_set">
+								<label>
+									<input type="text" placeholder="placeholder" />
+								</label>
+							</div>
+							<button type="button" class="btn_fill"><span class="txt">BtnText</span></button>
+							<button type="button" class="btn_fill" disabled><span class="txt">BtnText</span></button>
+						</div>
+					</div>
+					<!-- // divide_mid -->
+
+					<div class="divide_btm">
+						<p class="txt">본인 명의에 휴대폰이 없으신가요?</p>
+						<button type="button" class="btn_text"><span class="txt">다른 방식으로 본인인증 하기</span></button>
+					</div>
+					<!-- // divide_btm -->
+				</div>
+				<!-- // divide_wrap -->
 			</div>
-
-			<div class="divide_wrap">
-				<div class="divide_top">
-					<div class="section_tit">
-						<h2>PIN 번호 인증</h2>
-						<p class="txt">임시 OTP 발급을 위해 설정한 PIN을 입력하세요.</p>
-					</div>
-				</div>
-				<!-- // divide_top -->
-
-				<div class="divide_mid">
-					<div class="otp_num_wrap">
-						<div class="pin_dot_wrap">
-							<span class="pin_dot"></span>
-							<span class="pin_dot"></span>
-							<span class="pin_dot"></span>
-							<span class="pin_dot"></span>
-							<span class="pin_dot"></span>
-							<span class="pin_dot"></span>
-						</div>
-						<p class="pin_alert">5회 실패 시 OTP PIN 번호를 재설정 해야합니다.<br />
-							(1/5)</p>
-					</div>
-					<!-- // otp_num_wrap -->
-				</div>
-				<!-- // divide_mid -->
-
-				<div class="divide_btm">
-					<div class="keypad_wrap">
-						<div class="keypad_num_wrap">
-							<button type="button" class="btn_num"><span class="num">1</span></button>
-							<button type="button" class="btn_num"><span class="num">2</span></button>
-							<button type="button" class="btn_num"><span class="num">3</span></button>
-							<button type="button" class="btn_num"><span class="num">4</span></button>
-							<button type="button" class="btn_num"><span class="num">5</span></button>
-							<button type="button" class="btn_num"><span class="num">6</span></button>
-							<button type="button" class="btn_num"><span class="num">7</span></button>
-							<button type="button" class="btn_num"><span class="num">8</span></button>
-							<button type="button" class="btn_num"><span class="num">9</span></button>
-							<button type="button" class="btn_num"><span class="num">0</span></button>
-						</div>
-						<div class="keypad_tools">
-							<button type="button" class="btn_reset"><span class="txt">전체<br />삭제</span></button>
-							<button type="button" class="btn_del">
-								<span class="ico">
-									<svg id="Layer_1" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
-										<path d="m19.5,2h-10.5c-1.357,0-2.629.604-3.487,1.656L1.026,9.156c-1.345,1.648-1.345,4.041,0,5.688l4.486,5.5c.858,1.052,2.13,1.656,3.487,1.656h10.5c2.481,0,4.5-2.019,4.5-4.5V6.5c0-2.481-2.019-4.5-4.5-4.5Zm3.5,15.5c0,1.93-1.57,3.5-3.5,3.5h-10.5c-1.056,0-2.045-.469-2.712-1.288L1.802,14.212c-1.047-1.282-1.047-3.143,0-4.425l4.486-5.5c.667-.818,1.656-1.288,2.712-1.288h10.5c1.93,0,3.5,1.57,3.5,3.5v11Zm-5.146-8.646l-3.146,3.146,3.146,3.146c.195.195.195.512,0,.707-.098.098-.226.146-.354.146s-.256-.049-.354-.146l-3.146-3.146-3.146,3.146c-.098.098-.226.146-.354.146s-.256-.049-.354-.146c-.195-.195-.195-.512,0-.707l3.146-3.146-3.146-3.146c-.195-.195-.195-.512,0-.707s.512-.195.707,0l3.146,3.146,3.146-3.146c.195-.195.512-.195.707,0s.195.512,0,.707Z"/>
-									</svg>
-									<!-- <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" height="24" viewBox="0 0 24 24" width="24" data-name="Layer 1">
-										<path fill="#333" d="m19 2h-9.044a4.966 4.966 0 0 0 -3.946 1.931l-5.8 7.455a1 1 0 0 0 0 1.228l5.8 7.455a4.966 4.966 0 0 0 3.946 1.931h9.044a5.006 5.006 0 0 0 5-5v-10a5.006 5.006 0 0 0 -5-5zm-1.293 12.293a1 1 0 1 1 -1.414 1.414l-2.293-2.293-2.293 2.293a1 1 0 0 1 -1.414-1.414l2.293-2.293-2.293-2.293a1 1 0 0 1 1.414-1.414l2.293 2.293 2.293-2.293a1 1 0 0 1 1.414 1.414l-2.293 2.293z"/>
-									</svg> -->
-								</span>
-							</button>
-						</div>
-					</div>
-					<!-- // keypad_wrap -->
-				</div>
-				<!-- // divide_btm -->
-			</div>
-			<!-- // divide_wrap -->
+			<!-- // section -->
 		</div>
-		<!-- // section -->
-
-
+		<!-- // service_item -->
 	</div>
-	<!-- // service_wrap -->
+	<!-- // service_list -->
+
 
 
 	
-
-
-
-	 
-	
-	
-
-
-	
-
-
-
-
-<br />
-
-
-
-
 
 
 
 	
 </div><!-- // wrap -->
 
-<div class="layer toast">
-	<div class="layer_inner">
-		<span class="ico">
-			<svg id="Layer_1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path fill="#2e89d9" d="m12 1c-7.71 0-11 3.29-11 11s3.29 11 11 11 11-3.29 11-11-3.29-11-11-11zm5.305 8.539c-1.312 2.053-3.18 4.626-6.001 6.319-.324.195-.731.19-1.05-.013-1.52-.963-2.661-1.995-3.594-3.248-.33-.443-.238-1.069.205-1.399.442-.33 1.069-.237 1.398.205.674.905 1.488 1.679 2.536 2.405 2.16-1.46 3.644-3.507 4.819-5.346.299-.466.917-.602 1.381-.304.466.298.602.916.305 1.381z"/></svg>
-		</span>
-		<p class="txt">인증이 완료되었습니다.</p>
-		<button type="button" class="btn_close"><span class="txt">닫기</span></button>
-	</div>
-</div>
 
-<div class="layer toast">
-	<div class="layer_inner">
-		<span class="ico">
-			<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="24" height="24"><path fill="#e50911" d="M23.08,15.33L15,2.57c-.68-.98-1.81-1.57-3-1.57s-2.32,.58-3.03,1.6L.93,15.31c-1.02,1.46-1.21,3.21-.5,4.56,.7,1.35,2.17,2.12,4.01,2.12h15.12c1.85,0,3.31-.77,4.01-2.12,.7-1.35,.51-3.09-.49-4.54ZM11,7c0-.55,.45-1,1-1s1,.45,1,1v6c0,.55-.45,1-1,1s-1-.45-1-1V7Zm1,12c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5,1.5,.67,1.5,1.5-.67,1.5-1.5,1.5Z"/></svg>
-			<!-- <svg id="Layer_1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path fill="#e50911" d="m12 1c-7.71 0-11 3.29-11 11s3.29 11 11 11 11-3.29 11-11-3.29-11-11-11zm5.305 8.539c-1.312 2.053-3.18 4.626-6.001 6.319-.324.195-.731.19-1.05-.013-1.52-.963-2.661-1.995-3.594-3.248-.33-.443-.238-1.069.205-1.399.442-.33 1.069-.237 1.398.205.674.905 1.488 1.679 2.536 2.405 2.16-1.46 3.644-3.507 4.819-5.346.299-.466.917-.602 1.381-.304.466.298.602.916.305 1.381z"/></svg> -->
-		</span>
-		<p class="txt">인증에 실패했습니다. 다시 시도해주세요.</p>
-		<button type="button" class="btn_close"><span class="txt">닫기</span></button>
-	</div>
-</div>
-<!-- // layer toast-->
-
-
-
-
-<br />
-
-
-
-
-
-
-<div class="layer alert">
-	<div class="layer_inner">
-		<div class="layer_content">
-			<div class="layer_header">
-				<h2>PUSH 인증 요청</h2>
-			</div>
-			<div class="layer_body">
-				<span class="ico">
-					<!-- <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M15,24h-6c-2.757,0-5-2.243-5-5V5C4,2.243,6.243,0,9,0h6c2.757,0,5,2.243,5,5v14c0,2.757-2.243,5-5,5ZM9,2c-1.654,0-3,1.346-3,3v14c0,1.654,1.346,3,3,3h6c1.654,0,3-1.346,3-3V5c0-1.654-1.346-3-3-3h-6Zm5,17h0c0-.552-.448-1-1-1h-2c-.552,0-1,.448-1,1h0c0,.552,.448,1,1,1h2c.552,0,1-.448,1-1Z"/></svg> -->
-					<svg class="loading" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve" width="512" height="512">
-						<g>
-							<path d="M268.078,512C126.693,511.962,12.108,397.316,12.146,255.932S126.83-0.038,268.215,0   c96.559,0.026,184.888,54.38,228.428,140.565c7.695,15.91,1.035,35.046-14.875,42.74c-15.501,7.497-34.155,1.384-42.213-13.834   C391.771,74.81,276.296,36.808,181.634,84.592S48.97,247.851,96.754,342.513s163.259,132.664,257.921,84.88   c36.48-18.414,66.133-47.987,84.646-84.417c8.018-15.753,27.287-22.023,43.04-14.005c15.753,8.018,22.023,27.287,14.005,43.04l0,0   C452.852,458.077,364.519,512.244,268.078,512z"/>
-						</g>
-					</svg>
-
-				</span>
-				<div class="txt_wrap">
-					<p class="txt">앱으로 인증 요청 메세지를 보내고 있습니다.</p>
-				</div>
-			</div>
-		</div>
-		<!-- // layer_content -->
-		<button type="button" class="btn_close"><span class="txt">닫기</span></button>
-	</div>
-	<!-- // layer_inner -->
-</div>
-<!-- // layer alert-->
-
-
-<div class="layer alert">
-	<div class="layer_inner">
-		<div class="layer_content">
-			<div class="layer_header">
-				<h2>PUSH 인증 요청</h2>
-			</div>
-			<div class="layer_body">
-				<span class="ico">
-					<svg id="Layer_1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path fill="#2e89d9" d="m12 1c-7.71 0-11 3.29-11 11s3.29 11 11 11 11-3.29 11-11-3.29-11-11-11zm5.305 8.539c-1.312 2.053-3.18 4.626-6.001 6.319-.324.195-.731.19-1.05-.013-1.52-.963-2.661-1.995-3.594-3.248-.33-.443-.238-1.069.205-1.399.442-.33 1.069-.237 1.398.205.674.905 1.488 1.679 2.536 2.405 2.16-1.46 3.644-3.507 4.819-5.346.299-.466.917-.602 1.381-.304.466.298.602.916.305 1.381z"/></svg>
-				</span>
-				<div class="txt_wrap">
-					<strong class="tit">인증 요청 발송 완료</strong>
-					<p class="txt">휴대폰 앱에서 인증을 진행해주세요.</p>
-				</div>
-				
-			</div>
-			<div class="layer_footer">
-				<button type="button" class="btn_next"><span class="txt">확인</span></button>
-			</div>
-		</div>
-		<!-- // layer_content -->
-		<button type="button" class="btn_close"><span class="txt">닫기</span></button>
-	</div>
-	<!-- // layer_inner -->
-</div>
-<!-- // layer alert-->
-
-
-<div class="layer alert">
-	<div class="layer_inner">
-		<div class="layer_content">
-			<div class="layer_header">
-				<h2>PUSH 인증 요청</h2>
-			</div>
-			<div class="layer_body">
-				<span class="ico">
-					<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path fill="#e50911" d="M23.08,15.33L15,2.57c-.68-.98-1.81-1.57-3-1.57s-2.32,.58-3.03,1.6L.93,15.31c-1.02,1.46-1.21,3.21-.5,4.56,.7,1.35,2.17,2.12,4.01,2.12h15.12c1.85,0,3.31-.77,4.01-2.12,.7-1.35,.51-3.09-.49-4.54ZM11,7c0-.55,.45-1,1-1s1,.45,1,1v6c0,.55-.45,1-1,1s-1-.45-1-1V7Zm1,12c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5,1.5,.67,1.5,1.5-.67,1.5-1.5,1.5Z"/></svg>
-				</span>
-				<div class="txt_wrap">
-					<strong class="tit">인증 요청 발송 실패</strong>
-					<p class="txt">PUSH 인증을 다시 시도해주세요.</p>
-				</div>
-				
-			</div>
-			<div class="layer_footer">
-				<button type="button" class="btn_next"><span class="txt">확인</span></button>
-			</div>
-		</div>
-		<!-- // layer_content -->
-		<button type="button" class="btn_close"><span class="txt">닫기</span></button>
-	</div>
-	<!-- // layer_inner -->
-</div>
-<!-- // layer alert-->
-
-
-<div class="layer alert">
-	<div class="layer_inner">
-		<div class="layer_content">
-			<div class="layer_header">
-				<h2>PIN 번호 인증</h2>
-			</div>
-			<div class="layer_body">
-				<span class="ico">
-					<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path fill="#e50911" d="M23.08,15.33L15,2.57c-.68-.98-1.81-1.57-3-1.57s-2.32,.58-3.03,1.6L.93,15.31c-1.02,1.46-1.21,3.21-.5,4.56,.7,1.35,2.17,2.12,4.01,2.12h15.12c1.85,0,3.31-.77,4.01-2.12,.7-1.35,.51-3.09-.49-4.54ZM11,7c0-.55,.45-1,1-1s1,.45,1,1v6c0,.55-.45,1-1,1s-1-.45-1-1V7Zm1,12c-.83,0-1.5-.67-1.5-1.5s.67-1.5,1.5-1.5,1.5,.67,1.5,1.5-.67,1.5-1.5,1.5Z"/></svg>
-				</span>
-				<div class="txt_wrap">
-					<strong class="tit">
-						비밀번호 5회 입력 실패로<br />
-						비밀번호 재설정이 필요합니다.
-					</strong>
-					<p class="txt">관리자에게 문의하세요.</p>
-				</div>
-			</div>
-		</div>
-		<!-- // layer_content -->
-		<button type="button" class="btn_close"><span class="txt">닫기</span></button>
-	</div>
-	<!-- // layer_inner -->
-</div>
-<!-- // layer alert-->
 
 
 
@@ -597,6 +631,42 @@ document.querySelector('.keypad_tools .btn_del').addEventListener('click', funct
         }
     }
 });
+
+
+
+let btn_test01 = document.querySelector("#btn_test01");
+btn_test01.addEventListener("click", function(){
+	document.querySelector("#test001").style.display = "none";
+	document.querySelector("#test002").style.display = "block";
+})
+
+let btn_test02 = document.querySelector("#btn_test02");
+btn_test02.addEventListener("click", function(){
+	document.querySelector("#test002").style.display = "none";
+	document.querySelector("#test005").style.display = "block";
+})
+
+
+let btn_test03 = document.querySelector("#btn_test03");
+btn_test03.addEventListener("click", function(){
+	document.querySelector("#test005").style.display = "none";
+	document.querySelector("#test006").style.display = "block";
+})
+
+
+
+
+/* 확인용 레이어 닫기(임시) */
+let layers = document.querySelectorAll(".layer");
+layers.forEach(function(item){
+	item.querySelectorAll("button").forEach(function(e){
+		e.addEventListener("click", function(){
+			item.closest(".layer").style.display = "none";
+		})
+	})
+})
+/* // 확인용 레이어 닫기(임시) */
+
 </script>
 
 

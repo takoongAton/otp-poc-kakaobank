@@ -101,7 +101,7 @@ p.txt {font-size:14px;}
 .user_state_wrap .user_info .user .user_name {display:inline-block;  font-size:14px; font-weight:600;}
 .user_state_wrap .user_info .user .user_emp {font-size:13px;}
 .user_state_wrap .user_info .user_phone {display:block; color:#818181; font-size:13px; letter-spacing:-0.025em;}
-.user_state_wrap .status span {display:inline-flex; justify-content:center; align-items:center; width:140px; height:36px; border-radius:18px; color:#fff; font-size:13px; font-weight:500;}
+.user_state_wrap .status span {display:inline-flex; justify-content:center; align-items:center; width:140px; height:36px; border-radius:18px; color:#fff; font-size:13px; font-weight:700;}
 .user_state_wrap .status span.pending {background-color:#403f3d;} /* 대기 */
 .user_state_wrap .status span.failed {background-color:#cc080f;} /* 실패 */
 .user_state_wrap .status span.completed {background-color:#2879bf;} /* 완료 */
@@ -118,7 +118,7 @@ p.txt {font-size:14px;}
 .otp_num_wrap .pin_alert {color:var(--color-danger); font-size:13px; line-height:1.1em;}
 
 .keypad_wrap {position:relative}
-.keypad_wrap button {display:flex; justify-content:center; align-items:center; width:100px; height:54px; border-radius:2px; color:#333; font-weight:500;}
+.keypad_wrap button {display:flex; justify-content:center; align-items:center; width:100px; height:54px; border-radius:2px; color:#333; font-weight:500; cursor:pointer;}
 .keypad_wrap .keypad_num_wrap {display:flex; flex-wrap:wrap; justify-content:center;}
 .keypad_wrap .keypad_num_wrap button.btn_num {background-color:#fff;}
 .keypad_wrap .keypad_num_wrap button.btn_num span {font-size:18px;}
