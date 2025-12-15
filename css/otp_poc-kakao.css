@@ -1,0 +1,181 @@
+@font-face {
+    font-family: 'KakaoSmallFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoSmallSans-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KakaoSmallFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoSmallSans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KakaoBigFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoBigSans-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KakaoBigFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoBigSans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KakaoBigFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoBigSans-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-display: swap;
+}
+
+
+
+:root {
+	--color_main : #ffe33c;
+	--color-danger :red;
+	--color-warring :#ff6600;
+	--color-good:green;
+}
+
+* {vertical-align:top; font-family:'KakaoSmallFont';}
+
+
+/* 뒤로가기 */
+.section .btn_back {position:absolute; top:20px; left:20px; cursor:pointer;}
+/* // 뒤로가기 */
+
+
+/* 내부 컨텐츠용 */
+.divide_wrap {display:flex; flex-direction:column; justify-content:space-between; width:100%; height:100%; padding:40px 20px;}
+.divide_wrap .divide_mid {flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center;}
+.divide_wrap .divide_btm {display:flex; flex-direction:column; justify-content:center; align-items:center; gap:14px; width:100%;}
+/* 내부 컨텐츠용 */
+
+/* 기본 입력폼 + 간격 */
+.ipt_wrap {display:flex; flex-direction:column; align-items:center; gap:10px; width:100%;}
+.ipt_wrap .ipt_set input {width:230px; height:50px; padding:0 1em; border:1px solid #bfbfbf; border-radius:15px; background-color:#f2f2f2; font-size:14px;}
+.ipt_wrap .ipt_set input::placeholder {color:#555; font-size:13px; letter-spacing:-0.04em;}
+
+button.btn_fill {display:flex; justify-content:center; align-items:center; width:230px; height:50px; border-radius:15px; background-color:#ffe33c; border:0 none;}
+button.btn_fill span.txt {display:inline-block; color:#333; font-size:14px; line-height:1em; font-weight:800; font-family:'KakaoBigFont';}
+button.btn_fill:disabled {background-color:#d9d9d9 !important;}
+button.btn_fill:disabled span.txt {color:#818181;}
+button.btn_text {display:inline-flex; justify-content:center; align-items:center; width:auto; padding:2px;}
+button.btn_text span.txt {display:inline-block; padding:0 0.125em; border-bottom:1.5px solid #333; color:#333; font-size:14px; line-height:1em; font-weight:bold;}
+
+/* 기본 입력폼 + 간격 */
+
+
+
+
+/* 페이지 타이틀 */
+.main_tit_wrap {display:flex; flex-direction:column; gap:10px; width:100%; padding:20px 0;}
+.main_tit_wrap h1 {font-size:28px; font-weight:800; font-family:'KakaoBigFont'; letter-spacing:0;}
+.main_tit_wrap p.txt {font-size:14px;}
+/* // 페이지 타이틀 */
+
+
+
+/* section tit */
+.section_tit {display:flex; flex-direction:column; align-items:center; gap:10px; width:100%;}
+.section_tit .ico {display:block;}
+.section_tit .ico svg {width:26px; height:26px;}
+.section_tit h2 {font-size:20px; font-weight:600;}
+.section_tit p.tit {margin-top:4px; font-size:14px; font-weight:bold;}
+p.txt {font-size:14px;}
+/* section tit */
+
+
+
+
+/* 임시 OTP 발급 진행 상태 */
+.user_state_wrap {display:flex; flex-direction:column; align-items:center; gap:24px; width:100%;}
+.user_state_wrap .user_info {display:inline-flex; flex-direction:column; align-items:center; gap:6px;}
+.user_state_wrap .user_info .user {display:flex; align-items:baseline; gap:4px; line-height:1em;}
+.user_state_wrap .user_info .user span {display:inline-block; color:#403f3d; font-size:14px; line-height:1em; font-weight:500;}
+.user_state_wrap .user_info .user .user_name {display:inline-block;  font-size:14px; font-weight:600;}
+.user_state_wrap .user_info .user .user_emp {font-size:13px;}
+.user_state_wrap .user_info .user_phone {display:block; color:#818181; font-size:13px; letter-spacing:-0.025em;}
+.user_state_wrap .status span {display:inline-flex; justify-content:center; align-items:center; width:140px; height:36px; border-radius:18px; color:#fff; font-size:13px; font-weight:500;}
+.user_state_wrap .status span.pending {background-color:#403f3d;} /* 대기 */
+.user_state_wrap .status span.failed {background-color:#cc080f;} /* 실패 */
+.user_state_wrap .status span.completed {background-color:#2879bf;} /* 완료 */
+/* // 임시 OTP 발급 진행 상태 */
+
+
+
+/* keypad_wrap */
+.otp_num_wrap {display:flex; flex-direction:column; justify-content:space-between; width:100%; height:56px; text-align:center;}
+.otp_num_wrap .pin_dot_wrap {display:flex; justify-content:center; align-items:center; gap:8px;}
+.otp_num_wrap .pin_dot_wrap.error {animation: ani_error 0.3s ease 1;}
+.otp_num_wrap .pin_dot_wrap span.pin_dot {display:inline-block; width:16px; height:16px; background-color:#ddd; border-radius:100%;}
+.otp_num_wrap .pin_dot_wrap span.pin_dot.active {background-color:#ffe33c; box-shadow:0 2px 6px rgba(0,0,0,0.06);}
+.otp_num_wrap .pin_alert {color:var(--color-danger); font-size:13px; line-height:1.1em;}
+
+.keypad_wrap {position:relative}
+.keypad_wrap button {display:flex; justify-content:center; align-items:center; width:100px; height:54px; border-radius:2px; color:#333; font-weight:500;}
+.keypad_wrap .keypad_num_wrap {display:flex; flex-wrap:wrap; justify-content:center;}
+.keypad_wrap .keypad_num_wrap button.btn_num {background-color:#fff;}
+.keypad_wrap .keypad_num_wrap button.btn_num span {font-size:18px;}
+.keypad_wrap .keypad_num_wrap button.btn_num.active { animation-name: ani_keypad; animation-duration: 0.1s;}
+
+.keypad_wrap .keypad_tools button {position:absolute; bottom:0;}
+.keypad_wrap .keypad_tools button.btn_del {right:0;}
+.keypad_wrap .keypad_tools button.btn_reset {bottom:0;}
+.keypad_wrap .keypad_tools button.btn_reset span {display:inline-block; color:#666; font-size:12px; line-height:1em; font-weight:600;}
+@keyframes ani_error{ 0%,100% {transform:translateX(0px);} 25%,75% {transform:translateX(-10px);} 50% {transform:translateX(10px);} }
+@keyframes ani_keypad { 0%,100% {background-color:rgba(255,255,255,1)} 50% {background-color:rgba(0,0,0,0.04)} }
+/* // keypad */
+
+
+
+
+
+
+/* 팝업 */
+.layer {display:inline-block; margin:10px;}
+.layer .layer_inner {box-shadow:0 2px 6px rgba(0,0,0,0.16);}
+
+.layer.toast .layer_inner {display:flex; justify-content:space-between; align-items:center; gap:10px; width:320px; max-width:320px; height:60px; padding:0 16px; background-color:#fff; border-radius:8px;}
+.layer.toast .layer_inner span.ico {width:24px; height:24px;}
+.layer.toast .layer_inner p.txt {flex:1; font-size:13px; text-align:left;}
+.layer.toast .layer_inner button.btn_close {position:relative; width:28px; height:28px;}
+.layer.toast .layer_inner button.btn_close::before,
+.layer.toast .layer_inner button.btn_close::after {content:""; display:block; position:absolute; top:50%; left:50%; width:60%; height:1.5px; background-color:#333; border-radius:2px;}
+.layer.toast .layer_inner button.btn_close::before {transform:translate(-50%,-50%) rotate(-45deg);}
+.layer.toast .layer_inner button.btn_close::after {transform:translate(-50%,-50%) rotate(45deg);}
+.layer.toast .layer_inner button.btn_close span.txt {color:transparent; font-size:0;}
+
+
+
+.layer.alert {display:inline-block;}
+.layer.alert .layer_inner {position:relative; width:320px; height:200px; padding:16px; background-color:#fff; border-radius:8px;}
+.layer.alert .layer_inner .layer_content {display:flex; flex-direction:column; gap:16px; height:100%;}
+.layer.alert .layer_inner .layer_header {text-align:left;}
+.layer.alert .layer_inner .layer_header h2 {font-size:14px;}
+.layer.alert .layer_inner .layer_body {flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:10px;}
+.layer.alert .layer_inner .layer_body span.ico svg {width:24px; height:24px;}
+.layer.alert .layer_inner .layer_body span.ico svg {fill:#848484;}
+.layer.alert .layer_inner .layer_body span.ico svg.loading {width:28px; height:28px; animation: ani_loading 1.2s infinite linear; margin-bottom:10px;}
+@keyframes ani_loading {
+	0% {transform:rotate(0deg);}
+	100% {transform:rotate(360deg);}
+}
+.layer.alert .layer_inner .layer_body div.txt_wrap {}
+.layer.alert .layer_inner .layer_body div.txt_wrap strong {font-size:14px;}
+.layer.alert .layer_inner .layer_body div.txt_wrap p.txt {font-size:13px;}
+.layer.alert .layer_inner button.btn_next {display:inline-flex; justify-content:center; align-items:center; width:70px; height:32px; border-radius:4px; background-color:var(--color_main);}
+.layer.alert .layer_inner button.btn_next span.txt {color:#1e1e1e; font-size:13px; font-weight:700;}
+
+.layer.alert .layer_inner button.btn_close {position:absolute; top:12px; right:16px; width:28px; height:28px;}
+.layer.alert .layer_inner button.btn_close::before,
+.layer.alert .layer_inner button.btn_close::after {content:""; display:block; position:absolute; top:50%; left:50%; width:60%; height:1.5px; background-color:#333; border-radius:2px;}
+.layer.alert .layer_inner button.btn_close::before {transform:translate(-50%,-50%) rotate(-45deg);}
+.layer.alert .layer_inner button.btn_close::after {transform:translate(-50%,-50%) rotate(45deg);}
+.layer.alert .layer_inner button.btn_close span.txt {color:transparent; font-size:0;}
+/* // 팝업 */
