@@ -26,6 +26,7 @@ if (isIOS) {
 
 
 
+
 /* 확인용 레이어 닫기(임시) */
 let layers = document.querySelectorAll(".layer");
 layers.forEach(function(item){
@@ -42,6 +43,8 @@ layers.forEach(function(item){
             else {
                 item.closest(".layer").style.display = "none";
             }
+			
+			
 		})
 	})
 })
@@ -117,6 +120,7 @@ function resetAll() {
     console.log("전체 삭제됨. pinNum: " + pinNum);
 }
 
+// resetActive 함수는 기존 코드를 유지합니다.
 function resetActive(){
     document.querySelector("#toast_test01").style.display = "block";
     setTimeout(function(){
@@ -139,14 +143,17 @@ document.addEventListener('DOMContentLoaded', function() {
 // --- 숫자 버튼 클릭 이벤트 처리 ---
 document.querySelectorAll('.keypad_wrap .btn_num').forEach(function(button) {
     button.addEventListener('click', function() {
-
+        
         // 5회 실패 상태에서는 추가 입력 방지
         if (pinFailCount >= 5) {
             alert('PIN 번호 입력 횟수를 초과했습니다. 재설정이 필요합니다.');
             return; 
         }
-        
+
         pinInputWrap.classList.remove('error'); // 입력 시작 시 error 클래스 제거
+        if (pinAlert) {
+            pinAlert.style.display = 'none'; // 입력 시작 시 알림 숨김
+        }
 
         let number = this.querySelector('.num').textContent;
         
@@ -164,8 +171,6 @@ document.querySelectorAll('.keypad_wrap .btn_num').forEach(function(button) {
         if (pinNum.length === 6) {
             if (pinNum === '121212') {
                 // --- 성공 로직 ---
-                // document.querySelector('.pin_num_wrap').style.display = 'none'; 
-                // resetActive() 등 추가 작업...
                 pinFailCount = 0; // 성공 시 실패 횟수 초기화
                 updateAlertMessage(); // 성공 후 메시지 숨김 (0회 상태)
                 document.querySelector("#toast_test01").classList.add("active");
@@ -173,9 +178,6 @@ document.querySelectorAll('.keypad_wrap .btn_num').forEach(function(button) {
 
             } else {
                 // --- 실패 로직 ---
-                resetAll(); // 실패 시에도 전체 초기화 함수 사용
-                pinInputWrap.classList.add('error'); // 오류 클래스만 추가
-
                 pinFailCount++; // 실패 횟수 증가
                 
                 // 입력 상태 초기화 (Dot, pinNum)
@@ -193,12 +195,17 @@ document.querySelectorAll('.keypad_wrap .btn_num').forEach(function(button) {
 // --- 1. 전체삭제 버튼 클릭 이벤트 처리 ---
 document.querySelector('.keypad_tools .btn_reset').addEventListener('click', function() {
     resetAll();
+    // 전체삭제는 실패 횟수와 별개로 동작하므로 pinFailCount는 유지
 });
 
 
 // --- 2. 딜리트(백스페이스) 버튼 클릭 이벤트 처리 ---
 document.querySelector('.keypad_tools .btn_del').addEventListener('click', function() {
     pinInputWrap.classList.remove('error'); 
+    if (pinAlert) {
+        pinAlert.style.display = 'none'; // 삭제 버튼 클릭 시에도 알림 숨김
+    }
+    
     if (pinNum.length > 0) {
         pinNum = pinNum.slice(0, pinNum.length - 1);
         console.log("삭제 후 pinNum: " + pinNum);
